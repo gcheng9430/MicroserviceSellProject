@@ -1,4 +1,4 @@
-package VO;
+package com.imooc.sell.VO;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

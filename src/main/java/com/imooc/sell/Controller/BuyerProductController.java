@@ -1,9 +1,9 @@
 package com.imooc.sell.Controller;
 
 
-import VO.ProductInfoVO;
-import VO.ProductVO;
-import VO.ResultVO;
+import com.imooc.sell.VO.ProductInfoVO;
+import com.imooc.sell.VO.ProductVO;
+import com.imooc.sell.VO.ResultVO;
 import com.imooc.sell.Service.CategoryService;
 import com.imooc.sell.Service.ProductService;
 import com.imooc.sell.dataobject.ProductCategory;
@@ -13,10 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import utils.ResultVOUtil;
+import com.imooc.sell.utils.ResultVOUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 

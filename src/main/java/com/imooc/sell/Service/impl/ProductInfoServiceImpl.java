@@ -3,7 +3,7 @@ package com.imooc.sell.Service.impl;
 import com.imooc.sell.Service.ProductService;
 import com.imooc.sell.dataobject.ProductInfo;
 import com.imooc.sell.repository.ProductInfoRepository;
-import enums.ProductStatusEnum;
+import com.imooc.sell.enums.ProductStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,7 +1,7 @@
 package com.imooc.sell.Service.impl;
 
 import com.imooc.sell.dataobject.ProductInfo;
-import enums.ProductStatusEnum;
+import com.imooc.sell.enums.ProductStatusEnum;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

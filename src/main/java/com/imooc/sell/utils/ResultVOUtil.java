@@ -1,6 +1,6 @@
-package utils;
+package com.imooc.sell.utils;
 
-import VO.ResultVO;
+import com.imooc.sell.VO.ResultVO;
 
 public class ResultVOUtil {
 
