@@ -1,5 +1,7 @@
 package com.imooc.sell.exception;
 
+import com.imooc.sell.enums.ResultEnum;
+
 public class SellException extends RuntimeException{
     private Integer code;
 

@@ -27,14 +27,14 @@ public class OrderDTO {
     //订单总额
     private BigDecimal orderAmount;
     //订单状态 默认为新下单 0是新下单 2是已完成 2是已取消
-    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
+    private Integer orderStatus ;
     //支付状态 默认为0未支付
-    private Integer payStatus = PayStatusEnum.WAIT.getCode();
+    private Integer payStatus ;
     //创建时间
-    @JsonSerialize(using = Date2LongSerializer.class)
+    //@JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
     //更新时间
-    @JsonSerialize(using  = Date2LongSerializer.class)
+    //@JsonSerialize(using  = Date2LongSerializer.class)
     private Date updateTIme;
 
     private List<OrderDetail> orderDetailList;

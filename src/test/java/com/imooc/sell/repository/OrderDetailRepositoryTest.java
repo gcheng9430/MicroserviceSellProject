@@ -22,13 +22,13 @@ class OrderDetailRepositoryTest {
     @Test
     public void saveTest(){
         OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setDetailId("1111110");
-        orderDetail.setOrderId("12345678");
+        orderDetail.setDetailId("1111112");
+        orderDetail.setOrderId("12345670");
         orderDetail.setProductIcon("xxx.jpg");
         orderDetail.setProductId("a111");
         orderDetail.setProductName("pumpkin");
-        orderDetail.setProductPrice(new BigDecimal("10.5"));
-        orderDetail.setProductQuantity(2);
+        orderDetail.setProductPrice(new BigDecimal("2.5"));
+        orderDetail.setProductQuantity(3);
         OrderDetail result = repository.save(orderDetail);
         Assert.assertNotNull(result);
     }
