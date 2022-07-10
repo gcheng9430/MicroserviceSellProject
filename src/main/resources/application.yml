@@ -13,9 +13,16 @@ spring:
     properties:
       hibernate:
         enable_lazy_load_no_trans: true
+  main:
+    lazy-initialization: true
+  jackson:
+    default-property-inclusion: non_null  #????????????????object?null???????
 #        dialect: org.hibernate.dialect.MySQL5Dialect
 server:
   port: 8081
+  servlet:
+    context-path: /sell
+
 
 
 

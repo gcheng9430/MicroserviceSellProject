@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+//没有做unit test隔离
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Proxy(lazy = false)
@@ -51,8 +52,8 @@ class ProductCategoryRepositoryTest {
 
     @Test
     public void findByCategoryIdInTest(){
-        List<Integer> list = Arrays.asList(1,10);
-        List<ProductCategory> result = repository.findAllByCategoryType(list);
+        List<Integer> list = Arrays.asList(2,3);
+        List<ProductCategory> result = repository.findByCategoryTypeIn(list);
         //这种查询的时候需要一个无参的构造方法
         Assert.assertNotEquals(0,result.size());
     }
