@@ -1,4 +1,4 @@
-package converter;
+package com.imooc.sell.converter;
 
 import com.imooc.sell.dataobject.OrderMaster;
 import com.imooc.sell.dto.OrderDTO;

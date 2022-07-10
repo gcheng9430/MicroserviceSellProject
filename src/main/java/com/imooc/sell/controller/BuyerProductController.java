@@ -1,4 +1,4 @@
-package com.imooc.sell.Controller;
+package com.imooc.sell.controller;
 
 
 import com.imooc.sell.VO.ProductInfoVO;

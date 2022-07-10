@@ -14,10 +14,8 @@ import com.imooc.sell.exception.SellException;
 import com.imooc.sell.repository.OrderDetailRepository;
 import com.imooc.sell.repository.OrderMasterRepository;
 import com.imooc.sell.utils.KeyUtil;
-import converter.OrderMaster2OrderDTOConverter;
+import com.imooc.sell.converter.OrderMaster2OrderDTOConverter;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.criterion.Order;
-import org.hibernate.type.OrderedMapType;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,7 +27,6 @@ import org.springframework.util.CollectionUtils;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -80,8 +77,8 @@ public class OrderServiceImpl implements OrderService {
 
         //3、 写入订单数据库（orderMaster和orderDeetail）
         OrderMaster orderMaster  = new OrderMaster();
+        orderDTO.setOrderId(orderId); //先设置id再拷贝是为了orderDTO里面也有 因为return了过后我们到时候返回到前端也是从orderDTO里面提取然后放进ResultVO
         BeanUtils.copyProperties(orderDTO,orderMaster); //一定要先拷贝再设置id和amount不然就被拷贝过来的null覆盖了
-        orderMaster.setOrderId(orderId);
         orderMaster.setOrderAmount(orderAmount);
         orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode()); //本来是有default的 但是因为拷贝过来了null覆盖了 重新设置一下
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
