@@ -1,6 +1,7 @@
 package com.imooc.sell.Service.impl;
 
 import com.imooc.sell.Service.OrderService;
+import com.imooc.sell.Service.PayService;
 import com.imooc.sell.Service.ProductService;
 import com.imooc.sell.dataobject.OrderDetail;
 import com.imooc.sell.dataobject.OrderMaster;
@@ -44,7 +45,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMasterRepository orderMasterRepository;//用来把新订单order master写进数据库
 
-
+    @Autowired
+    private PayService payService;
 
     @Override
     @Transactional //一旦抛出异常事物就会回滚不会有任何改变 这是为了最后那个扣库存
@@ -155,7 +157,8 @@ public class OrderServiceImpl implements OrderService {
 
         //如果已经支付，需要退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())){
-            //TODO
+            //退款
+            payService.refund(orderDTO);
         }
         return orderDTO;
     }
