@@ -60,8 +60,8 @@ public class BuyerOrderController {
     @GetMapping("/List")
     //订单列表  given OpenId和page和size 返回的ResultVO的data应该是订单列表orderDTO(但是orderDetiallist可以空的）
     public ResultVO<List<OrderDTO>>  List(@RequestParam("openid") String openid,
-                                          @RequestParam(value = "page", defaultValue = 0) Integer page,
-                                          @RequestParam(value = "size", defaultValue = 10) Integer size){
+                                          @RequestParam(value = "page", defaultValue = "0") Integer page,
+                                          @RequestParam(value = "size", defaultValue = "10") Integer size){
         //openid不能为空
         if (StringUtils.isEmpty(openid)){
             log.error("【查询订单列表】open id为空is empty");

@@ -22,19 +22,19 @@ class ProductInfoServiceImplTest {
     @Autowired
     private ProductInfoServiceImpl productService;
     @Test
-    void findOne() throws Exception{
+    public void findOne() throws Exception{
         ProductInfo productInfo = productService.findOne("123456");
         Assert.assertEquals(String.valueOf("123456"),productInfo.getProductId());
     }
 
     @Test
-    void findUpAll() throws Exception{
+    public void findUpAll() throws Exception{
         List<ProductInfo> productInfoList =  productService.findUpAll();
         Assert.assertNotEquals(0,productInfoList.size());
     }
 
     @Test
-    void findAll() throws Exception{
+    public void findAll() throws Exception{
         PageRequest request = PageRequest.of(0,2);  //查第几页 在那一页有多少条内容
         Page<ProductInfo> productInfoPage  = productService.findAll(request);
         //System.out.println(productInfoPage.getTotalElements());
@@ -43,7 +43,7 @@ class ProductInfoServiceImplTest {
     }
 
     @Test
-    void save() throws Exception{
+    public void save() throws Exception{
         ProductInfo productInfo = new ProductInfo();
         productInfo.setProductId("123457");
         productInfo.setProductName("shrimp");
@@ -58,4 +58,17 @@ class ProductInfoServiceImplTest {
         ProductInfo result = productService.save(productInfo);
         Assert.assertNotNull(result);
     }
+
+    @Test
+    public void offSale(){
+        ProductInfo result= productService.onSale("123456");
+        Assert.assertEquals(ProductStatusEnum.DOWN,result.getProductStatusEnum());
+    }
+    @Test
+    public void onSale(){
+        ProductInfo result= productService.onSale("123456");
+        Assert.assertEquals(ProductStatusEnum.UP,result.getProductStatusEnum());
+    }
+
+
 }

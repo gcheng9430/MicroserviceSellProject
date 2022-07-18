@@ -10,7 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
  */
 
 @Getter
-public enum ProductStatusEnum {
+public enum ProductStatusEnum implements CodeEnum{
     UP(0,"in stock"),
     DOWN(1,"out of stock")
     ;
