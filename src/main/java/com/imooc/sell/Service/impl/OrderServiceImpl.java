@@ -212,4 +212,14 @@ public class OrderServiceImpl implements OrderService {
         }
         return orderDTO;
     }
+
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());//再把他的content（是个list）全部换成orderDTO
+        Page<OrderDTO> orderDTOPage = new PageImpl<OrderDTO>(orderDTOList, pageable,orderMasterPage.getTotalElements());//再从list换成Page
+        //list换成page需要：(content  list, pageable, 数量）
+
+        return orderDTOPage;
+    }
 }

@@ -98,6 +98,6 @@ public class PayServiceImpl implements PayService {
 
         RefundResponse refundResponse = bestPayService.refund(request);
         log.info("【wechat refund】refundResponse={}",JsonUtil.toJson(refundResponse));
-
+        return refundResponse;
     }
 }
