@@ -15,16 +15,16 @@
                     <table class="table table-bordered table-condensed">
                         <thead>
                         <tr>
-                            <th>商品id</th>
-                            <th>名称</th>
-                            <th>图片</th>
-                            <th>单价</th>
-                            <th>库存</th>
-                            <th>描述</th>
-                            <th>类目</th>
-                            <th>创建时间</th>
-                            <th>修改时间</th>
-                            <th colspan="2">操作</th>
+                            <th>Product Id</th>
+                            <th>Name</th>
+                            <th>Icon</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Create Time</th>
+                            <th>Update Time</th>
+                            <th colspan="2">More Option</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,12 +40,12 @@
                             <td>${productInfo.categoryType}</td>
                             <td>${productInfo.createTime}</td>
                             <td>${productInfo.updateTime}</td>
-                            <td><a href="/sell/seller/product/index?productId=${productInfo.productId}">修改</a></td>
+                            <td><a href="/sell/seller/product/index?productId=${productInfo.productId}">Change</a></td>
                             <td>
                                 <#if productInfo.getProductStatusEnum().message == "在架">
-                                    <a href="/sell/seller/product/off_sale?productId=${productInfo.productId}">下架</a>
+                                    <a href="/sell/seller/product/off_sale?productId=${productInfo.productId}">Make it Off Sale</a>
                                 <#else>
-                                    <a href="/sell/seller/product/on_sale?productId=${productInfo.productId}">上架</a>
+                                    <a href="/sell/seller/product/on_sale?productId=${productInfo.productId}">Make it On Sale</a>
                                 </#if>
                             </td>
                         </tr>
@@ -58,9 +58,9 @@
                 <div class="col-md-12 column">
                     <ul class="pagination pull-right">
                     <#if currentPage lte 1>
-                        <li class="disabled"><a href="#">上一页</a></li>
+                        <li class="disabled"><a href="#">Prev</a></li>
                     <#else>
-                        <li><a href="/sell/seller/order/list?page=${currentPage - 1}&size=${size}">上一页</a></li>
+                        <li><a href="/sell/seller/order/list?page=${currentPage - 1}&size=${size}">Prev</a></li>
                     </#if>
 
                     <#list 1..productInfoPage.getTotalPages() as index>
@@ -72,9 +72,9 @@
                     </#list>
 
                     <#if currentPage gte productInfoPage.getTotalPages()>
-                        <li class="disabled"><a href="#">下一页</a></li>
+                        <li class="disabled"><a href="#">Next</a></li>
                     <#else>
-                        <li><a href="/sell/seller/order/list?page=${currentPage + 1}&size=${size}">下一页</a></li>
+                        <li><a href="/sell/seller/order/list?page=${currentPage + 1}&size=${size}">Next</a></li>
                     </#if>
                     </ul>
                 </div>
