@@ -15,12 +15,12 @@
                     <table class="table table-bordered table-condensed">
                         <thead>
                         <tr>
-                            <th>类目id</th>
-                            <th>名字</th>
+                            <th>Category id</th>
+                            <th>Name</th>
                             <th>type</th>
-                            <th>创建时间</th>
-                            <th>修改时间</th>
-                            <th>操作</th>
+                            <th>Create Time</th>
+                            <th>Update Time</th>
+                            <th>More Options</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -32,7 +32,7 @@
                             <td>${category.categoryType}</td>
                             <td>${category.createTime}</td>
                             <td>${category.updateTime}</td>
-                            <td><a href="/sell/seller/category/index?categoryId=${category.categoryId}">修改</a></td>
+                            <td><a href="/sell/seller/category/index?categoryId=${category.categoryId}">Modify</a></td>
                         </tr>
                         </#list>
                         </tbody>
