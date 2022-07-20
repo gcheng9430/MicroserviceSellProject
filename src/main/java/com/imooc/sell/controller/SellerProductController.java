@@ -7,12 +7,17 @@ import com.imooc.sell.dataobject.ProductCategory;
 import com.imooc.sell.dataobject.ProductInfo;
 import com.imooc.sell.dto.OrderDTO;
 import com.imooc.sell.exception.SellException;
+import com.imooc.sell.form.ProductForm;
+import com.imooc.sell.utils.KeyUtil;
 import org.apache.catalina.valves.rewrite.Substitution;
+import org.simpleframework.xml.core.Validate;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -103,9 +108,9 @@ public class SellerProductController {
     }
 
     @GetMapping("/index")
-    public void index(@RequestParam(value = "productId", required = false) String productId,
+    public ModelAndView index(@RequestParam(value = "productId", required = false) String productId,
                       Map<String,Object> map){
-        if(StringUtils.isEmpty(productId)){
+        if(!StringUtils.isEmpty(productId)){
             ProductInfo productInfo =  productService.findOne(productId);
             map.put("productInfo", productInfo);
         }
@@ -116,9 +121,48 @@ public class SellerProductController {
         return new ModelAndView("/product/index",map);
     }
 
+    /**
+     * 保存/更新
+     * @param form
+     * @param bindingResult
+     * @param map
+     * @return
+     */
     @PostMapping("/save")
-    public ModelAndView save(){
-        
+    public ModelAndView save(@Validate ProductForm form,
+                             BindingResult bindingResult,
+                             Map<String,Object> map){
+        if(bindingResult.hasErrors()){
+            //如果失败 跳到错误页面然后回到新增商品的页
+            map.put("msg",bindingResult.getFieldError().getDefaultMessage());
+            map.put("url","/sell/seller/product/index");
+            return new ModelAndView("common/error",map);
+        }
+
+
+//        没出错的话要进行拷贝了
+        ProductInfo productInfo = new ProductInfo();
+        try{
+//            如果product id是空的说明是新增
+            if (!StringUtils.isEmpty(form.getProductId())){
+                productInfo = productService.findOne(form.getProductId());
+
+            }else{
+//                如果是新增的要给他设置一下id
+                form.setProductId(KeyUtil.genUniqueKey());
+            }
+            BeanUtils.copyProperties(form,productInfo);
+            productService.save(productInfo);
+        }catch(SellException e){
+            map.put("msg",e.getMessage());
+            map.put("url","/sell/seller/product/index");
+            return new ModelAndView("common/error",map);
+        }
+
+//        没问题
+        map.put("url","/sell/seller/product/list");
+        return new ModelAndView("common/success",map);
+
     }
 
 
