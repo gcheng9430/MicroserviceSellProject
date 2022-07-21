@@ -3,6 +3,7 @@ package com.imooc.sell.Service.impl;
 import com.imooc.sell.Service.OrderService;
 import com.imooc.sell.Service.PayService;
 import com.imooc.sell.Service.ProductService;
+import com.imooc.sell.Service.WebSocket;
 import com.imooc.sell.dataobject.OrderDetail;
 import com.imooc.sell.dataobject.OrderMaster;
 import com.imooc.sell.dataobject.ProductInfo;
@@ -19,6 +20,7 @@ import com.imooc.sell.converter.OrderMaster2OrderDTOConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -47,6 +49,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PushMessageServiceImpl pushMessageService;
+
+    @Autowired
+    private WebSocket websocket;
 
     @Override
     @Transactional //一旦抛出异常事物就会回滚不会有任何改变 这是为了最后那个扣库存
@@ -91,6 +99,10 @@ public class OrderServiceImpl implements OrderService {
                 new CartDTO(e.getProductId(),e.getProductQuantity())
                 ).collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
+
+        //发送websocket消息
+        websocket.sendMessage(orderDTO.getOrderId());
+
 
 
         return orderDTO;
@@ -182,6 +194,8 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
 
+        //推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
         return orderDTO;
     }
 

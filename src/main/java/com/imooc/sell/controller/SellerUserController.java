@@ -70,7 +70,25 @@ public class SellerUserController {
     }
 
     @GetMapping("/logout")
-    public void logout(){
+    public ModelAndView logout(HttpServletRequest request,
+                       HttpServletResponse response,
+                       Map<String,Object>map){
+        //1. 从cookie里查询
+        Cookie cookie = CookieUtil.get(request,CookieConstant.TOKEN);
+        if(cookie!=null){
+            //2. 清楚redis
+            redisTemplate.opsForValue().getOperations().delete(String.format(RedisConstant.TOKEN_PREFIX,cookie.getValue()));
+            //3. 清除cookie respone,name,value设置为null,过期时间设置为0
+            CookieUtil.set(response,CookieConstant.TOKEN,null,0);
+        }
+        //跳转到成功界面
+        map.put("msg",ResultEnum.LOGOUT_SUCCESS.getMessage());
+        map.put("url","sell/seller/order/list");
+        return new ModelAndView("common/success",map);
+
+
+
+
 
     }
 
