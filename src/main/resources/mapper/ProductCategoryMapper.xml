@@ -1,0 +1,28 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<!DOCTYPE mapper-->
+<!--        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"-->
+<!--        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
+<!--&lt;!&ndash;<beans xmlns="http://www.springframework.org/schema/beans"&ndash;&gt;-->
+<!--&lt;!&ndash;       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&ndash;&gt;-->
+<!--&lt;!&ndash;       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">&ndash;&gt;-->
+
+<!--&lt;!&ndash;</beans>&ndash;&gt;-->
+
+
+<!--<mapper namespace="com.imooc.sell.dataobject.mapper.ProductCategoryMapper">-->
+<!--<resultMap type="com.imooc.sell.dataobject.ProductCategory" id="BaseResultMap">-->
+<!--    <id column="category_id" property="categoryId" jbdcType = "INTEGER"/>-->
+<!--    <id column="category_name" property="categoryName" jbdcType = "VARCHAR"/>-->
+<!--    <id column="category_type" property="categoryType" jbdcType = "INTEGER"/>-->
+
+<!--</resultMap>-->
+
+<!--    <select id="seelectByCategoryType" reseultMap="BaseReesultMap" parameterType="java.lang.Integer">-->
+<!--        select category_id, category_name, category_type-->
+<!--        from product_category-->
+<!--        where category_type = #{category_type,jdbcType=INTEGER}-->
+<!--    </select>-->
+<!--</mapper>-->
+
+
+

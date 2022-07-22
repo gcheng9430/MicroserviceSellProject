@@ -47,5 +47,16 @@ projectUrl:
   sell: http://sell.natapp4.cc
 
 
+#打印mysql语句
+#logging:
+#  level:
+#    com:
+#      ionic:
+#        sell:
+#          data object:
+#            mapper: trace
+#打印mysql语句
 
-
+##xml文件的使用
+#mybatis:
+#  mapper-locations:classpath:mapper/*.xml
