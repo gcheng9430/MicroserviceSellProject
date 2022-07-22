@@ -2,6 +2,7 @@ package com.imooc.sell.Service.impl;
 
 import com.imooc.sell.Service.CategoryService;
 import com.imooc.sell.dataobject.ProductCategory;
+import com.imooc.sell.dataobject.dao.ProductCategoryDao;
 import com.imooc.sell.repository.ProductCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private ProductCategoryRepository respository;
+
+    @Autowired
+    private ProductCategoryDao productCategoryDao;
 
     @Override
     public ProductCategory findOne(Integer categoryId) {
