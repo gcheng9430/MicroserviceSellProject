@@ -8,6 +8,10 @@ import com.imooc.sell.exception.SellException;
 import com.imooc.sell.repository.ProductInfoRepository;
 import com.imooc.sell.enums.ProductStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,12 +20,14 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+//@CacheConfig(cacheNames = "product")  避免在function里面反复写cacheNames了
 public class ProductInfoServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository repository;
 
 
+//    @Cacheable(cacheNames = "product",key="123")
     @Override
     public ProductInfo findOne(String productId) {
         return repository.getReferenceById(productId);
@@ -37,6 +43,7 @@ public class ProductInfoServiceImpl implements ProductService {
         return repository.findAll(pageable);
     }
 
+//    @CachePut(cacheNames = "product",key="123")
     @Override
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo);

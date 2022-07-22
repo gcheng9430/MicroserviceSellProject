@@ -10,6 +10,7 @@ import com.imooc.sell.dataobject.ProductCategory;
 import com.imooc.sell.dataobject.ProductInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,7 @@ public class BuyerProductController {
     private CategoryService categoryService;
 
     @GetMapping("/list")
+    @Cacheable(cacheNames = "product",key="123") //那个product在rediis里面会是一个文件夹名字 下面存的就是这些缓存的VO 都以product开头 这些VO被序列化之后当做value存进redis
     public ResultVO list(){
         //1. 查询所有的上架商品
         List<ProductInfo> productInfoList  = productService.findUpAll();
@@ -55,7 +57,7 @@ public class BuyerProductController {
         List<ProductVO> productVOList = new ArrayList<>()
 ;        //先遍历类目
         for (ProductCategory productCategory:productCategoryList){
-            ProductVO productVO = new ProductVO();
+            ProductVO productVO = new ProductVO(); //相当于productCategoryVO
             productVO.setCategoryType(productCategory.getCategoryType());
             productVO.setCategoryName(productCategory.getCategoryName());
 

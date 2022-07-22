@@ -1,0 +1,61 @@
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Ques0101
+    url: jdbc:mysql://localhost:3306/sell?characterEncoding=utf-8&useSSL=false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+  main:
+    lazy-initialization: true
+  jackson:
+    default-property-inclusion: non_null  #????????????????object?null???????
+#        dialect: org.hibernate.dialect.MySQL5Dialect
+  redis:
+    host: 192.168.30.113
+    port: 6379
+server:
+  port: 8081
+  servlet:
+    context-path: /sell
+
+
+wechat:
+  mpAppId: wxd898fcb01713c658
+  mpAppSecret: 47ccc303338cee6e62894fxxxxxxxxxxx
+  openAppId: wx6ad144e54af67d87
+  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
+  mchId: 1483469312
+  mchKey: 06C56A89949D617xxxxxxxxxxx
+  keyPath: /var/weixin_cert/h5.p12
+  notifyUrl: http://sell.natapp4.cc/sell/pay/notify
+  templateId:
+    orderStatus: e-Cqq67QxD6YNI41iRiqawEYdFavW_7pc7LyEMb-yeQ
+
+
+#TODO might  gonna change / see your natapp plan and see the url you set om wechat
+projectUrl:
+  wechatMpAuthorize: http://sell.natapp4.cc
+  wechatOpenAuthorize: http://sell.natapp4.cc
+  sell: http://sell.natapp4.cc
+
+
+#打印mysql语句
+#logging:
+#  level:
+#    com:
+#      ionic:
+#        sell:
+#          data object:
+#            mapper: trace
+#打印mysql语句
+
+##xml文件的使用
+#mybatis:
+#  mapper-locations:classpath:mapper/*.xml

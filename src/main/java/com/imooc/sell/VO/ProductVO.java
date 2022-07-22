@@ -4,6 +4,7 @@ package com.imooc.sell.VO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -11,8 +12,10 @@ import java.util.List;
  * 商品（包含类目） 类目：商品商品商品
  */
 @Data
-public class ProductVO {
+public class ProductVO implements Serializable {
 
+
+    private static final long serialVersionUID = 3355332619015620687L;
     @JsonProperty("name") //下面是我自己取的名字方便记忆 这里会让前端依然呈现这里的名字
     private String categoryName;
 

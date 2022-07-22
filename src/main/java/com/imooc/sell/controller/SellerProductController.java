@@ -13,6 +13,9 @@ import org.apache.catalina.valves.rewrite.Substitution;
 import org.simpleframework.xml.core.Validate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -47,6 +50,7 @@ public class SellerProductController {
      * @return
      */
     @GetMapping("list")
+    @Cacheable(cacheNames = "product",key="123")
     public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "10") Integer size,
                              Map<String,Object> map){
@@ -129,6 +133,8 @@ public class SellerProductController {
      * @return
      */
     @PostMapping("/save")
+//    @CachePut(cacheNames = "product",key="123")
+    @CacheEvict(cacheNames = "product",key="123")
     public ModelAndView save(@Validate ProductForm form,
                              BindingResult bindingResult,
                              Map<String,Object> map){
